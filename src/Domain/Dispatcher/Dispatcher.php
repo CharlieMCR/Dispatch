@@ -3,6 +3,7 @@
 namespace Charliemcr\Dispatch\Domain\Dispatcher;
 
 
+use Charliemcr\Dispatch\Domain\Batches\BatchRepository;
 use Charliemcr\Dispatch\Domain\Couriers\CourierDispatchable;
 use Charliemcr\Dispatch\Domain\Couriers\InvalidCourier;
 use Charliemcr\Dispatch\Domain\Orders\OrderEntity;
@@ -38,6 +39,24 @@ class Dispatcher
             default:
                 throw new InvalidCourier('Shipping method not found');
         }
+    }
+
+    public function startDispatch()
+    {
+        /**
+         * @var $batchRepository BatchRepository
+         */
+        $batchRepository = $this->container['batch-repository'];
+        $batchRepository->openBatch();
+    }
+
+    public function closeDispatch()
+    {
+        /**
+         * @var $batchRepository BatchRepository
+         */
+        $batchRepository = $this->container['batch-repository'];
+        $batchRepository->closeBatch();
     }
 
     protected function getConsignmertNumberForCourier(string $containerKey)

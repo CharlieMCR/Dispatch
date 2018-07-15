@@ -3,6 +3,7 @@
 namespace Charliemcr\Test\Integration;
 
 
+use Charliemcr\Dispatch\Domain\Batches\BatchRepository;
 use Charliemcr\Dispatch\Domain\Couriers\InvalidCourier;
 use Charliemcr\Dispatch\Domain\Dispatcher\Dispatcher;
 use Charliemcr\Dispatch\Domain\Orders\OrderEntity;
@@ -51,6 +52,34 @@ class DispatcherTest extends TestCase
         $order = $orderRepository->getEntity();
         $order->setShippingMethod(3);
         $this->dispatcher->assignConsignmentNumberToOrder($orderRepository);
+    }
+
+    public function testDispatchBatchOpen()
+    {
+        /**
+         * @var $batchRepository BatchRepository
+         */
+        $batchRepository = $this->container['batch-repository'];
+        $this->assertNull($batchRepository->getEntity()->getBatchStart());
+        $this->dispatcher->startDispatch();
+        $this->assertInstanceOf(
+            \DateTime::class,
+            $batchRepository->getEntity()->getBatchStart()
+        );
+    }
+
+    public function testDispatchBatchClose()
+    {
+        /**
+         * @var $batchRepository BatchRepository
+         */
+        $batchRepository = $this->container['batch-repository'];
+        $this->assertNull($batchRepository->getEntity()->getBatchEnd());
+        $this->dispatcher->closeDispatch();
+        $this->assertInstanceOf(
+            \DateTime::class,
+            $batchRepository->getEntity()->getBatchEnd()
+        );
     }
 
     public function consignmentNumberAssignmentDataProvider(): array

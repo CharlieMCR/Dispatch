@@ -14,19 +14,19 @@ use Charliemcr\Dispatch\Infrastructure\Entity;
 class BatchEntity extends Entity
 {
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     private $batchStart;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     private $batchEnd;
 
     /**
      * @return \DateTime
      */
-    public function getBatchStart(): \DateTime
+    public function getBatchStart(): ?\DateTime
     {
         return $this->batchStart;
     }
@@ -42,7 +42,7 @@ class BatchEntity extends Entity
     /**
      * @return \DateTime
      */
-    public function getBatchEnd(): \DateTime
+    public function getBatchEnd(): ?\DateTime
     {
         return $this->batchEnd;
     }
