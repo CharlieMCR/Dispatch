@@ -4,14 +4,10 @@ namespace Charliemcr\Test\Unit;
 
 
 use Charliemcr\Dispatch\Domain\Couriers\CourierDispatchable;
-use Charliemcr\Dispatch\Infrastructure\App;
-use PHPUnit\Framework\TestCase;
-use Pimple\Container;
+use Charliemcr\Test\TestCase;
 
 class CourierAdapterTest extends TestCase
 {
-    private $container;
-
     /**
      * @param $courierKey              string The container key for the courier adapter
      * @param $consignmentNumberLength int    The expected length of each consignment number
@@ -29,12 +25,6 @@ class CourierAdapterTest extends TestCase
             $consignmentNumberLength,
             strlen($courier->getConsignmentNumber())
         );
-    }
-
-    protected function setUp()
-    {
-        $this->container = (new App(new Container()))->getContainer();
-        parent::setUp();
     }
 
     public function CourierConsignmentDataProvider(): array
