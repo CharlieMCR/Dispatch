@@ -31,7 +31,7 @@ class OrderRepository extends Repository
      * @return array
      * @throws InvalidCourier
      */
-    public function getOrdersForBatch(int $courier)
+    public function getOrdersForBatch(int $courier): array
     {
         /**
          * @var $batchRepository BatchRepository

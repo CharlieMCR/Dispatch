@@ -82,6 +82,11 @@ class DispatcherTest extends TestCase
         );
     }
 
+    public function testSendConsignments()
+    {
+        // TODO
+    }
+
     public function consignmentNumberAssignmentDataProvider(): array
     {
         return [

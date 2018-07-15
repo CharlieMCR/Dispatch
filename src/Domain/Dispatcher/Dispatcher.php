@@ -59,6 +59,29 @@ class Dispatcher
         $batchRepository->closeBatch();
     }
 
+    public function sendConsignments()
+    {
+        /**
+         * @var $orderRepository OrderRepository
+         */
+        $orderRepository = $this->container['order-repository'];
+
+        $ancOrders = $orderRepository->getOrdersForBatch(OrderEntity::SHIPPING_METHOD_ANC);
+        /**
+         * @var $anc CourierDispatchable
+         */
+        $anc = $this->container['anc'];
+        $anc->sendConsignmentNumbers($ancOrders);
+
+        $royalMailOrders = $orderRepository->getOrdersForBatch(OrderEntity::SHIPPING_METHOD_ROYAL_MAIL);
+
+        /**
+         * @var $royalMail CourierDispatchable
+         */
+        $royalMail = $this->container['royal-mail'];
+        $royalMail->sendConsignmentNumbers($royalMailOrders);
+    }
+
     protected function getConsignmertNumberForCourier(string $containerKey)
     {
         /**
