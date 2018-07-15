@@ -12,7 +12,7 @@ class CourierAdapterTest extends TestCase
      * @param $courierKey              string The container key for the courier adapter
      * @param $consignmentNumberLength int    The expected length of each consignment number
      *
-     * @dataProvider CourierConsignmentDataProvider
+     * @dataProvider courierConsignmentDataProvider
      */
     public function testConsignmentNumbers(string $courierKey, int $consignmentNumberLength)
     {
@@ -27,7 +27,7 @@ class CourierAdapterTest extends TestCase
         );
     }
 
-    public function CourierConsignmentDataProvider(): array
+    public function courierConsignmentDataProvider(): array
     {
         return [
             'Royal Mail' => [
