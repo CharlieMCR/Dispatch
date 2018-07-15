@@ -5,6 +5,7 @@ namespace Charliemcr\Dispatch\Infrastructure;
 
 use Charliemcr\Dispatch\Domain\Couriers\ANCAdapter;
 use Charliemcr\Dispatch\Domain\Couriers\RoyalMailAdapter;
+use Charliemcr\Dispatch\Domain\Orders\OrderRepository;
 use Charliemcr\Dispatch\Infrastructure\ANC\ANC;
 use Charliemcr\Dispatch\Infrastructure\RoyalMail\RoyalMail;
 use Pimple\Container;
@@ -28,6 +29,10 @@ class App
 
         $this->container['anc'] = function ($c) {
             return new ANCAdapter(new ANC());
+        };
+
+        $this->container['order-repository'] = function ($c) {
+            return new OrderRepository();
         };
     }
 
