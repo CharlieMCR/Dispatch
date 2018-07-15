@@ -2,6 +2,8 @@
 
 namespace Charliemcr\Dispatch\Infrastructure;
 
+use Pimple\Container;
+
 /**
  * Emulates an ancestor Repository class
  * Class Repository
@@ -14,8 +16,14 @@ class Repository
      */
     private $entity;
 
-    public function __construct()
+    /**
+     * @var Container
+     */
+    protected $container;
+
+    public function __construct(Container $container)
     {
+        $this->container = $container;
         $this->entity = new Entity();
     }
 

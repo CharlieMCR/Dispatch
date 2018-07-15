@@ -20,7 +20,7 @@ class DispatcherTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->dispatcher = new Dispatcher($this->container);
+        $this->dispatcher = $this->container['dispatcher'];
     }
 
     /**

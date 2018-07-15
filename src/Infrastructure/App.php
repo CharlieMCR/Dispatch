@@ -6,6 +6,7 @@ namespace Charliemcr\Dispatch\Infrastructure;
 use Charliemcr\Dispatch\Domain\Batches\BatchRepository;
 use Charliemcr\Dispatch\Domain\Couriers\ANCAdapter;
 use Charliemcr\Dispatch\Domain\Couriers\RoyalMailAdapter;
+use Charliemcr\Dispatch\Domain\Dispatcher\Dispatcher;
 use Charliemcr\Dispatch\Domain\Orders\OrderRepository;
 use Charliemcr\Dispatch\Infrastructure\ANC\ANC;
 use Charliemcr\Dispatch\Infrastructure\RoyalMail\RoyalMail;
@@ -33,11 +34,15 @@ class App
         };
 
         $this->container['order-repository'] = function ($c) {
-            return new OrderRepository();
+            return new OrderRepository($c);
         };
 
         $this->container['batch-repository'] = function ($c) {
-            return new BatchRepository();
+            return new BatchRepository($c);
+        };
+
+        $this->container['dispatcher'] = function ($c) {
+            return new Dispatcher($c);
         };
     }
 

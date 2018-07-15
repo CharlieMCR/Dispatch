@@ -4,6 +4,7 @@ namespace Charliemcr\Dispatch\Domain\Orders;
 
 
 use Charliemcr\Dispatch\Infrastructure\Entity;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Emulates an Order Entity
@@ -26,7 +27,10 @@ class OrderEntity extends Entity
      */
     private $shippingMethod;
 
-
+    /**
+     * @var $batchId Uuid
+     */
+    private $batchId;
 
     /**
      * @return int
@@ -38,10 +42,13 @@ class OrderEntity extends Entity
 
     /**
      * @param int $shippingMethod
+     *
+     * @return $this
      */
     public function setShippingMethod(int $shippingMethod)
     {
         $this->shippingMethod = $shippingMethod;
+        return $this;
     }
 
     /**
@@ -54,9 +61,31 @@ class OrderEntity extends Entity
 
     /**
      * @param string $consignmentNumber
+     *
+     * @return $this
      */
     public function setConsignmentNumber(string $consignmentNumber)
     {
         $this->consignmentNumber = $consignmentNumber;
+        return $this;
+    }
+
+    /**
+     * @return Uuid
+     */
+    public function getBatchId(): Uuid
+    {
+        return $this->batchId;
+    }
+
+    /**
+     * @param Uuid $batchId
+     *
+     * @return $this
+     */
+    public function setBatchId(Uuid $batchId)
+    {
+        $this->batchId = $batchId;
+        return $this;
     }
 }

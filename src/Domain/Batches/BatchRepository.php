@@ -4,6 +4,7 @@ namespace Charliemcr\Dispatch\Domain\Batches;
 
 
 use Charliemcr\Dispatch\Infrastructure\Repository;
+use Pimple\Container;
 
 /**
  * Emulates a Batch Repository
@@ -13,9 +14,9 @@ use Charliemcr\Dispatch\Infrastructure\Repository;
  */
 class BatchRepository extends Repository
 {
-    public function __construct()
+    public function __construct(Container $container)
     {
-        parent::__construct();
+        parent::__construct($container);
         $this->setEntity(new BatchEntity());
     }
 
