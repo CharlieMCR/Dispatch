@@ -3,14 +3,18 @@
 namespace Charliemcr\Dispatch\Domain\Orders;
 
 
-use Ramsey\Uuid\Uuid;
+use Charliemcr\Dispatch\Infrastructure\Entity;
 
-class OrderEntity
+/**
+ * Emulates an Order Entity
+ *
+ * Class OrderEntity
+ * @package Charliemcr\Dispatch\Domain\Orders
+ */
+class OrderEntity extends Entity
 {
     const SHIPPING_METHOD_ANC = 1;
     const SHIPPING_METHOD_ROYAL_MAIL = 2;
-
-    private $id;
 
     /**
      * @var $consignmentNumber string
@@ -22,10 +26,7 @@ class OrderEntity
      */
     private $shippingMethod;
 
-    public function __construct()
-    {
-        $this->id = Uuid::uuid4();
-    }
+
 
     /**
      * @return int

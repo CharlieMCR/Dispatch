@@ -3,31 +3,19 @@
 namespace Charliemcr\Dispatch\Domain\Orders;
 
 
-class OrderRepository
-{
-    /**
-     * @var OrderEntity
-     */
-    private $entity;
+use Charliemcr\Dispatch\Infrastructure\Repository;
 
+/**
+ * Emulates an Order Repository
+ *
+ * Class OrderRepository
+ * @package Charliemcr\Dispatch\Domain\Orders
+ */
+class OrderRepository extends Repository
+{
     public function __construct()
     {
-        $this->entity = new OrderEntity();
-    }
-
-    /**
-     * @return OrderEntity
-     */
-    public function getEntity(): OrderEntity
-    {
-        return $this->entity;
-    }
-
-    /**
-     * @param OrderEntity $entity
-     */
-    public function setEntity(OrderEntity $entity)
-    {
-        $this->entity = $entity;
+        parent::__construct();
+        $this->setEntity(new OrderEntity());
     }
 }
